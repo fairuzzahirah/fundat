@@ -12,7 +12,7 @@ class AuthService {
         $user = User::where('email', $request->email)->first();
         
         if ($user && Hash::check($request->password, $user->password)) {
-            $token = $user->createToken('YourAppName')->plainTextToken();
+            $token = $user->createToken('YourAppName')->plainTextToken;
             return ['user' => $user, 'token' => $token];
         }
         

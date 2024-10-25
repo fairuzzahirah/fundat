@@ -3,26 +3,24 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
-use App\Http\Responses\ApiResponse;
-use App\Service\Auth\AuthService;
-use App\Http\Requests\Auth\LoginRequest;
+use App\Services\Auth\AuthService;
 use Illuminate\Http\Request;
 
 class LoginController extends Controller
 {
     protected $authService;
 
-    public function __construct(AuthService $authService)
+    public function __construct(Authservice $authService)
     {
         $this->authService = $authService;
     }
 
-    public function login(LoginRequest $request)
+    public function login(Request $request)
     {
         try {
-            return new ApiResponse('success',  __('validation.message.logged_in'), $this->authService->login($request), 200);
+            return $this->authService->login($request);
         } catch (\Exception $exception) {
-            return new ApiResponse('error',  $exception->getMessage(), null, $exception->getCode());
+            return dd($exception->getMessage());
         }
     }
 
