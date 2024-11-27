@@ -31,7 +31,7 @@ class RegisterController extends Controller
     {
         try{
             return new ApiResponse('success',  __('validation.message.registered'), $this->authService->entrepreneurRegister($request), 201);
-        }catch (\Exception $exception){
+        } catch (\Exception $exception){
             dd($exception->getMessage());
             return new ApiResponse('error', $exception->getMessage(), null, $exception->getCode());
         }

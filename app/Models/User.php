@@ -65,7 +65,7 @@ class User extends Authenticatable
 
     public function organizer()
     {
-        return $this->hasOne(Organizer::class, 'user_id', 'id');
+        return $this->hasOne(Organizer::class, 'users_id', 'id');
     }
 
     public function entrepreneur()
