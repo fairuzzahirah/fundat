@@ -29,5 +29,4 @@ class RegisterRequest extends FormRequest{
                 'phone' => ['required', 'numeric', 'regex:/^62\d{9,}$/'],
             ];
     }
-    
 }

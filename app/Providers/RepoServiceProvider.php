@@ -48,6 +48,8 @@ use App\Service\Organizer\Event\EventService;
 use App\Service\Organizer\Event\EventServiceImpl;
 use App\Service\Public\Event\PublicEventService;
 use App\Service\Public\Event\PublicEventServiceImpl;
+use App\Service\OTP\OTPResetService;
+use App\Service\OTP\OTPResetServiceImpl;
 
 class RepoServiceProvider extends ServiceProvider
 {
@@ -73,12 +75,14 @@ class RepoServiceProvider extends ServiceProvider
 
         $this->app->bind(AuthService::class, AuthServiceImpl::class);
         $this->app->bind(MitraService::class, MitraServiceImpl::class);
+        $this->app->bind(UserDataService::class, UserDataServiceImpl::class);
         $this->app->bind(OrganizationService::class, OrganizationServiceImpl::class);
         $this->app->bind(EventService::class, EventServiceImpl::class);
         $this->app->bind(PublicEventService::class, PublicEventServiceImpl::class);
         $this->app->bind(IconManagementService::class, IconManagementServiceImpl::class);
         $this->app->bind(ProfileManagementService::class, ProfileManagementServiceImpl::class);
         $this->app->bind(EventCategoryManagementService::class, EventCategoryManagementServiceImpl::class);
+        $this->app->bind(OTPResetService::class,OTPResetServiceImpl::class);
     }
 
     /**
