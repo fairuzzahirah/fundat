@@ -25,9 +25,9 @@ class RegisterRequest extends FormRequest{
             return [
                 'email' => 'required|email|unique:users,email',
                 'password' => 'required|min:5',
-                // 'password_confirmation' => 'required|same:password',
                 'full_name' => 'required|string|regex:/^[a-zA-Z ]+$/',
                 'phone' => ['required', 'numeric', 'regex:/^62\d{9,}$/'],
             ];
     }
+    
 }

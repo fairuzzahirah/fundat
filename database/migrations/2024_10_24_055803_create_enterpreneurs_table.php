@@ -11,16 +11,13 @@ return new class extends Migration
      */
     public function up(): void
     {
-        schema::create('enterpreneurs', function (blueprint $table){
+        Schema::create('entrepreneurs', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBiginteger('mitras_id')->index();
-            $table->unsignedBigInteger('users_id')->index();
-
-
-            $table->foreign('users_id')->references('id')->on('users')->onDelete('cascade');
-            $table->foreign('mitras_id')->references('id')->on('mitras')->onDelete('cascade');
+            $table->unsignedBigInteger('user_id')->index('user_id')->unique();
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
+            $table->unsignedBigInteger('mitra_id')->index('mitra_id')->unique();
+            $table->foreign('mitra_id')->references('id')->on('mitras')->onDelete('cascade');
             $table->timestamps();
-
         });
     }
 
@@ -29,6 +26,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('enterpreneurs');
+        Schema::dropIfExists('entrepreneurs');
     }
 };

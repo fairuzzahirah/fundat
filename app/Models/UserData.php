@@ -16,11 +16,11 @@ class UserData extends Model
     protected $dates = ['deleted_at'];
 
     protected $fillable = [
-        'users_id', 'username', 'full_name', 'phone', 'role'
+        'user_id', 'username', 'full_name', 'phone'
     ];
 
     public function user()
     {
-        return $this->belongsTo(User::class, 'users_id', 'id');
+        return $this->belongsTo(User::class, 'user_id', 'id');
     }
 }

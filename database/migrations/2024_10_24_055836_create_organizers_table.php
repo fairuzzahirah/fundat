@@ -13,12 +13,12 @@ return new class extends Migration
     {
         schema::create('organizers', function(blueprint $table){
             $table->id();
-            $table->unsignedBigInteger('users_id')->index();
-            $table->unsignedBiginteger('organizations_id')->index();
+            $table->unsignedBigInteger('user_id')->index();
+            $table->unsignedBiginteger('organization_id')->index();
 
             $table->timestamps();
-            $table->foreign('users_id')->references('id')->on('users')->onDelete('cascade');
-            $table->foreign('organizations_id')->references('id')->on('organizations')->onDelete('cascade');
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
+            $table->foreign('organization_id')->references('id')->on('organizations')->onDelete('cascade');
 
             
         });
