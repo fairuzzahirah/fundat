@@ -2,6 +2,7 @@
 namespace App\Service\OTP;
 
 use App\Models\User;
+use App\Mail\OTPMail;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Mail;
 use Carbon\Carbon;
@@ -23,10 +24,7 @@ class OTPResetServiceImpl implements OTPResetService
         $user->save();
 
         // Kirim email dengan OTP
-        Mail::send('emails.otp', ['otp' => $otp], function ($message) use ($user) {
-            $message->to($user->email)
-                ->subject('Your Password Reset OTP');
-        });
+        Mail::to($user->email)->send(new OTPMail($otp, $user));
 
         return __('validation.message.otp_sent');
     }
