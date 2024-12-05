@@ -18,7 +18,7 @@ class OTPMail extends Mailable
      */
     public function __construct(public int $otp)
     {
-        
+
     }
 
     /**
@@ -27,7 +27,7 @@ class OTPMail extends Mailable
     public function envelope(): Envelope
     {
         return new Envelope(
-            subject: 'O T P Mail',
+            subject: 'Reset Your Password',
         );
     }
 

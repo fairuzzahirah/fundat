@@ -42,7 +42,7 @@ class UserSeeder extends Seeder
                 'email' => 'mitra@example.com',
                 'email_verified_at' => now(),
                 'password' => Hash::make('password'),
-                'role' => 'mitra',
+                'role' => 'entrepreneur',
                 'status' => 'active',
                 'remember_token' => Str::random(10),
                 'created_at' => now(),
