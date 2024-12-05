@@ -1,65 +1,34 @@
 <?php
-
 namespace App\Http\Controllers;
 
-use App\Models\UserData;
+use App\Service\UserData\UserDataService;
+use App\Service\UserData\UserDataServiceImpl;
+use App\Http\Requests\UserData\UserDataRequest; // Import FormRequest
 use Illuminate\Http\Request;
 
 class UserDataController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
-    public function index()
+    protected $userDataService;
+
+    public function __construct(UserDataService $userDataService)
     {
-        //
+        $this->userDataService = $userDataService;
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
+    public function updateUserData(UpdateUserDataRequest $request) // Ganti Request dengan UpdateUserDataRequest
     {
-        //
-    }
+        // Mendapatkan data yang sudah divalidasi
+        $validatedData = $request->validated();
 
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(Request $request)
-    {
-        //
-    }
+        // Ambil user ID dari autentikasi
+        $userId = auth()->user()->id;
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(UserData $userData)
-    {
-        //
-    }
+        // Update data melalui service
+        $updatedUserData = $this->userDataService->updateUserData($validatedData, $userId);
 
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(UserData $userData)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, UserData $userData)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(UserData $userData)
-    {
-        //
+        return response()->json([
+            'status' => 'success',
+            'data' => $updatedUserData,
+        ]);
     }
 }

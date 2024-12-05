@@ -12,7 +12,7 @@ class UserDataRepositoryImpl implements UserDataRepository
         return UserData::create($data);
     }
 
-    public function fillUpdateById($data)
+    public function fillUpdateById($data, $userId)
     {
         $id = Auth::user()->id;
         $user = UserData::findOrFail($id);
